@@ -34,7 +34,7 @@ def main():
     if not args.banks:
         print("== scraping bdjobs.com ==")
         from scrapers.bdjobs import scrape as scrape_bdjobs
-        b = scrape_bdjobs(max_detail_pages=3)
+        b = scrape_bdjobs(max_pages=8)
         print(f"   bdjobs: {len(b)} jobs")
         all_jobs.extend(b)
 
@@ -53,9 +53,55 @@ def main():
     if not args.fast:
         print("== scraping bank career pages ==")
         from scrapers.bank_pages import scrape as scrape_banks
-        bank_jobs, _ = scrape_banks(max_workers=8)
-        print(f"   bank pages: {len(bank_jobs)} links")
+        bank_jobs, bank_errors = scrape_banks(max_workers=8)
+        print(f"   bank pages: {len(bank_jobs)} circulars")
         all_jobs.extend(bank_jobs)
+
+    # ---- per-source counts incl. every bank (even the ones that found 0) ----
+    sources = Counter(j["source"] for j in all_jobs)
+    bank_counts = {}
+    for j in all_jobs:
+        if j["source"].startswith("bank-site ("):
+            bank_name = j["source"][len("bank-site ("):-1]
+            bank_counts[bank_name] = bank_counts.get(bank_name, 0) + 1
+    dir_entries = []
+    try:
+        with open(os.path.join(HERE, "data", "banks.json"), encoding="utf-8") as f:
+            for b in json.load(f):
+                dir_entries.append(
+                    {
+                        "name": b["name"],
+                        "kind": "bank",
+                        "type": b.get("type") or "",
+                        "category": b.get("category") or "other",
+                        "website": b.get("website") or "",
+                        "careers_url": b.get("careers_url") or "",
+                        "verification": b.get("verification") or "",
+                        "jobs_found": int(bank_counts.get(b["name"], 0)),
+                    }
+                )
+    except Exception:
+        pass
+    dir_entries += [
+        {
+            "name": "BDJobs", "kind": "job-board", "type": "Bangladesh's largest private job portal",
+            "category": "private", "website": "https://www.bdjobs.com/",
+            "careers_url": "https://www.bdjobs.com/h/jobs/", "verification": "Scraped live",
+            "jobs_found": int(sources.get("bdjobs", 0)),
+        },
+        {
+            "name": "AllJobs by Teletalk", "kind": "job-board", "type": "Bangladesh government job portal by Teletalk",
+            "category": "government", "website": "https://alljobs.teletalk.com.bd/",
+            "careers_url": "https://alljobs.teletalk.com.bd/jobs/government", "verification": "Scraped live",
+            "jobs_found": int(sources.get("alljobs.teletalk", 0)),
+        },
+        {
+            "name": "Bangladesh Bank e-Recruitment", "kind": "government-portal", "type": "BB & BSCS official recruitment",
+            "category": "government", "website": "https://www.bb.org.bd/",
+            "careers_url": "https://erecruitment.bb.org.bd/", "verification": "Scraped live (bot-protected)",
+            "jobs_found": int(sources.get("bb.erecruitment", 0)),
+        },
+    ]
 
     # global dedupe
     seen, dedup = set(), []
@@ -75,7 +121,16 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1)
 
-    print(f"\nDone: {len(dedup)} jobs from {len(sources)} sources -> {OUT}")
+    with open(os.path.join(HERE, "data", "sources.json"), "w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "generated_at": payload["generated_at"],
+                "directory": dir_entries,
+            },
+            f, ensure_ascii=False, indent=1,
+        )
+
+    print(f"\nDone: {len(dedup)} jobs | directory: {len(dir_entries)} sites -> {OUT}")
     for s, c in list(sources.most_common())[:12]:
         print(f"   {s}: {c}")
     print(f"Took {time.time()-t0:.0f}s")

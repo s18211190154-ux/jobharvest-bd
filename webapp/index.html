@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JobHarvestBD — All Bangladesh Job Circulars</title>
-<meta name="description" content="Search all scraped job circulars from BDJobs, AllJobs Teletalk, Bangladesh Bank e-Recruitment and 60+ bank career pages. Auto-updated every 6 hours." />
+<meta name="description" content="Search all scraped job circulars from BDJobs, AllJobs Teletalk, Bangladesh Bank e-Recruitment and 60+ bank career pages. Directory of every site. Auto-updated every 6 hours." />
 <style>
   :root {
     --bg: #f4f6fa; --card: #fff; --ink: #17233a; --muted: #5c6b8a;
@@ -13,15 +13,21 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: "Segoe UI", system-ui, -apple-system, "Noto Sans Bengali", sans-serif; background: var(--bg); color: var(--ink); }
-
-  header.top { background: linear-gradient(135deg, var(--brand) 0%, var(--brand2) 100%); color: #fff; padding: 20px 16px 16px; }
   .wrap { max-width: 1100px; margin: 0 auto; }
+
+  header.top { background: linear-gradient(135deg, var(--brand) 0%, var(--brand2) 100%); color: #fff; padding: 20px 16px 40px; }
   header.top h1 { font-size: 1.45rem; letter-spacing: .3px; }
   header.top h1 span { opacity: .85; font-weight: 500; }
   .stats { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 8px; font-size: .85rem; opacity: .92; }
   .stats b { font-size: 1.05rem; }
 
-  .controls { background: var(--card); border-radius: var(--radius); padding: 14px; margin: -22px auto 10px; box-shadow: 0 6px 18px rgba(20,40,60,.08); max-width: 1100px; position: relative; }
+  .tabs { display: flex; gap: 6px; max-width: 1100px; margin: -30px auto 0; padding: 0 10px; }
+  .tab { background: rgba(255,255,255,.25); color: #fff; border: none; padding: 12px 26px; border-radius: 12px 12px 0 0; cursor: pointer; font-size: .95rem; font-weight: 600; }
+  .tab.active { background: var(--bg); color: var(--brand); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .controls { background: var(--card); border-radius: var(--radius); padding: 14px; margin: 14px auto 10px; box-shadow: 0 6px 18px rgba(20,40,60,.08); max-width: 1100px; }
   .searchrow { display: flex; gap: 10px; }
   .searchrow input[type=text] { flex: 1; padding: 12px 14px; font-size: 1rem; border: 1.5px solid #d5deec; border-radius: 10px; outline: none; }
   .searchrow input[type=text]:focus { border-color: var(--brand2); }
@@ -32,7 +38,7 @@
   .chip.active { background: var(--brand); color: #fff; border-color: var(--brand); }
   .count { color: var(--muted); font-size: .85rem; margin: 4px 2px 10px; max-width: 1100px; }
 
-  .jobs { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .jobs { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; padding: 0 10px; }
   .job { background: var(--card); border-radius: var(--radius); padding: 14px 16px; box-shadow: 0 3px 10px rgba(20,40,60,.05); border: 1px solid #e7ecf3; }
   .job h3 { font-size: 1.02rem; line-height: 1.35; margin-bottom: 4px; }
   .job h3 a { color: var(--ink); text-decoration: none; }
@@ -43,27 +49,44 @@
   .tag.gov { background: #eef2ff; color: #3b4fd8; }
   .tag.pri { background: #fff3e6; color: #c96a10; }
   .tag.bank { background: #e8f2f0; color: var(--brand); }
-  .deadline { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; }
+  .deadline { font-weight: 600; }
   .deadline.soon { color: var(--accent); }
   .desc { font-size: .85rem; color: var(--muted); margin-top: 6px; }
-  .btns { margin-top: 8px; }
+  .btns { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
   .btns a { display: inline-block; padding: 8px 16px; background: var(--brand); color: #fff; border-radius: 9px; text-decoration: none; font-size: .85rem; font-weight: 600; }
   .btns a:hover { background: var(--brand2); }
+  .btns a.ghost { background: #fff; color: var(--brand); border: 1.5px solid var(--brand); }
   .more { display: block; margin: 16px auto; padding: 10px 26px; background: #fff; border: 1.5px solid var(--brand); color: var(--brand); border-radius: 999px; font-size: .95rem; cursor: pointer; font-weight: 600; }
   .more:hover { background: var(--brand); color: #fff; }
   .empty { text-align: center; color: var(--muted); padding: 40px 0; }
+
+  /* directory */
+  .dir { max-width: 1100px; margin: 0 auto; padding: 0 10px; }
+  .dirrow { background: var(--card); border: 1px solid #e7ecf3; border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 3px 10px rgba(20,40,60,.05); }
+  .dirrow .nm { font-weight: 700; font-size: 1rem; }
+  .dirrow .ds { color: var(--muted); font-size: .84rem; margin-top: 2px; }
+  .dirrow .lv { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+  .badge { padding: 3px 10px; border-radius: 999px; font-size: .72rem; font-weight: 700; }
+  .b-green { background: #e6f6ec; color: #177245; }
+  .b-amber { background: #fff6e0; color: #a6720a; }
+  .b-blue  { background: #eef2ff; color: #3b4fd8; }
+  .dirrow .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .dirrow .acts a { text-decoration: none; font-size: .8rem; font-weight: 600; padding: 6px 14px; border-radius: 8px; }
+  .a-site { background: var(--brand); color: #fff; }
+  .a-careers { background: #fff; color: var(--brand); border: 1.5px solid var(--brand); }
+
   footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 26px 12px; }
-  footer a { color: var(--brand); }
-  @media (max-width: 640px) { .job { padding: 12px; } header.top h1 { font-size: 1.15rem; } }
+  .mutednote { max-width: 1100px; margin: 6px auto 0; padding: 0 10px; color: var(--muted); font-size: .8rem; }
+  @media (max-width: 640px) { .job, .dirrow { padding: 12px; } header.top h1 { font-size: 1.15rem; } }
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <h1>🇧🇩 JobHarvestBD <span>— search every Bangladeshi job circular in one place</span></h1>
+    <h1>🇧🇩 JobHarvestBD <span>— every Bangladeshi job circular, one place</span></h1>
     <div class="stats">
-      <div>Total jobs scraped: <b id="statTotal">…</b></div>
+      <div>Jobs scraped: <b id="statTotal">…</b></div>
       <div>Sources: <b id="statSources">…</b></div>
       <div>Last updated: <b id="statUpdated">…</b></div>
       <div>Auto-refresh: <b>every 6 hours</b></div>
@@ -71,35 +94,49 @@
   </div>
 </header>
 
-<div class="controls">
-  <div class="searchrow">
-    <input id="q" type="text" placeholder="Search job title, organization, or keyword (English / বাংলা)…" autocomplete="off" />
-  </div>
-  <div class="row2">
-    <select id="selSource"><option value="">All sources</option></select>
-    <select id="selDeadline">
-      <option value="">Any deadline</option>
-      <option value="7">Closing within 7 days</option>
-      <option value="30">Closing within 30 days</option>
-      <option value="none">No deadline info</option>
-    </select>
-    <select id="selSort">
-      <option value="new">Newest first</option>
-      <option value="deadline">Deadline soonest</option>
-      <option value="org">Organization A–Z</option>
-    </select>
-  </div>
-  <div class="chips" id="typeChips">
-    <div class="chip active" data-v="">All types</div>
-    <div class="chip" data-v="government">Government</div>
-    <div class="chip" data-v="private">Private</div>
-    <div class="chip" data-v="bank">Bank career pages</div>
-  </div>
+<div class="tabs">
+  <button class="tab active" data-tab="jobs">🔍 Job Search</button>
+  <button class="tab" data-tab="sites">🌐 All Sites (68 sources)</button>
 </div>
 
-<div class="count" id="count"></div>
-<div class="jobs" id="jobs"></div>
-<button class="more" id="more" onclick="loadMore()">Show more</button>
+<!-- ================= JOBS PANEL ================= -->
+<section class="panel active" id="panel-jobs">
+  <div class="controls">
+    <div class="searchrow">
+      <input id="q" type="text" placeholder="Search job title, organization, or keyword (English / বাংলা)…" autocomplete="off" />
+    </div>
+    <div class="row2">
+      <select id="selSource"><option value="">All sources</option></select>
+      <select id="selDeadline">
+        <option value="">Any deadline</option>
+        <option value="7">Closing within 7 days</option>
+        <option value="30">Closing within 30 days</option>
+        <option value="none">No deadline info</option>
+      </select>
+      <select id="selSort">
+        <option value="new">Newest first</option>
+        <option value="deadline">Deadline soonest</option>
+        <option value="org">Organization A–Z</option>
+      </select>
+    </div>
+    <div class="chips" id="typeChips"></div>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div class="jobs" id="jobs"></div>
+  <button class="more" id="more" onclick="loadMore()">Show more</button>
+</section>
+
+<!-- ================= DIRECTORY PANEL ================= -->
+<section class="panel" id="panel-sites">
+  <div class="controls">
+    <div class="searchrow"><input id="dq" type="text" placeholder="Search a site… e.g. Sonali, BRAC, Grameen" autocomplete="off" /></div>
+    <div class="chips" id="dirChips"></div>
+    <div class="mutednote">Click any site to open its official careers/jobs page directly. <b>jobs found</b> = circulars harvested from that site in the latest scrape.</div>
+  </div>
+  <div class="count" id="dcount"></div>
+  <div class="dir" id="dir"></div>
+</section>
 
 <footer>
   Data is scraped automatically from <a href="https://www.bdjobs.com" target="_blank" rel="noopener">BDJobs</a>,
@@ -109,10 +146,20 @@
 </footer>
 
 <script>
-let ALL = [], state = { q: "", source: "", type: "", deadline: "", sort: "new", page: 1, PER: 30 };
+let ALL = [], DIR = [];
+let state = { q: "", source: "", type: "", deadline: "", sort: "new", page: 1, PER: 30 };
+let dstate = { q: "", kind: "" };
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => (s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/* ---------- tabs ---------- */
+document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach((x) => x.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach((x) => x.classList.remove("active"));
+  t.classList.add("active");
+  $("#panel-" + t.dataset.tab).classList.add("active");
+}));
 
 function daysLeft(iso) {
   if (!iso) return null;
@@ -121,6 +168,7 @@ function daysLeft(iso) {
   return Math.ceil((d - Date.now()) / 86400000);
 }
 
+/* ---------- jobs filtering ---------- */
 function filtered() {
   const q = state.q.trim().toLowerCase();
   let out = ALL.filter((j) => {
@@ -148,7 +196,7 @@ function filtered() {
 
 function sourceClass(j) {
   if (j.source.startsWith("bank-site")) return "bank";
-  if ((j.org_type || "").includes("gov") ) return "gov";
+  if ((j.org_type || "").includes("gov")) return "gov";
   return "pri";
 }
 
@@ -165,7 +213,8 @@ function render() {
       : d < 0
         ? `<span class="deadline" style="color:#9aa5b8">⚠️ date passed: ${esc(j.deadline)}</span>`
         : `<span class="deadline ${d <= 7 ? "soon" : ""}">📅 closes ${esc(j.deadline)} ${d <= 7 ? `(${d}d left!)` : ""}</span>`;
-    const orgType = j.source.startsWith("bank-site") ? "BANK SITE" : (j.org_type || "").toUpperCase();
+    const isBank = j.source.startsWith("bank-site");
+    const orgType = isBank ? "BANK SITE" : (j.org_type || "—").toUpperCase();
     return `<div class="job">
       <h3><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></h3>
       <div class="meta"><b>${esc(j.organization)}</b>${j.location ? " · " + esc(j.location) : ""}</div>
@@ -176,7 +225,10 @@ function render() {
       </div>
       <div class="meta">${dl}${j.published_date ? ` · 🗓 posted ${esc(j.published_date)}` : ""}</div>
       ${j.description ? `<div class="desc">${esc(j.description.slice(0, 220))}${j.description.length > 220 ? "…" : ""}</div>` : ""}
-      <div class="btns"><a href="${esc(j.url)}" target="_blank" rel="noopener">Open circular ↗</a></div>
+      <div class="btns">
+        <a href="${esc(j.url)}" target="_blank" rel="noopener">Open circular ↗</a>
+        <a class="ghost" href="https://www.google.com/search?q=${encodeURIComponent((j.title || "") + " " + (j.organization || ""))}" target="_blank" rel="noopener">Verify on site</a>
+      </div>
     </div>`;
   }).join("");
   $("#more").style.display = res.length > slice.length ? "block" : "none";
@@ -184,27 +236,63 @@ function render() {
 
 function loadMore() { state.page++; render(); }
 
-function bindChips() {
-  document.querySelectorAll("#typeChips .chip").forEach((c) =>
-    c.addEventListener("click", () => {
-      document.querySelectorAll("#typeChips .chip").forEach((x) => x.classList.remove("active"));
-      c.classList.add("active");
-      state.type = c.dataset.v; state.page = 1; render();
-    }));
+/* ---------- directory ---------- */
+const KIND_LABEL = { "job-board": "board", "government-portal": "government", "bank": "bank" };
+function badgeFor(e) {
+  if (e.kind === "job-board" || e.kind === "government-portal") return `<span class="badge b-blue">LIVE · scraped</span>`;
+  if (e.jobs_found > 0) return `<span class="badge b-green">✓ ${e.jobs_found} circulars harvested</span>`;
+  if ((e.verification || "").includes("Confirmed")) return `<span class="badge b-amber">affiliate · 0 found today</span>`;
+  return `<span class="badge b-amber">needs direct check</span>`;
+}
+function renderDir() {
+  const q = dstate.q.trim().toLowerCase();
+  const res = DIR.filter((e) =>
+    (!dstate.kind || e.kind === dstate.kind) &&
+    (!q || (e.name + " " + (e.type || "") + " " + (e.category || "")).toLowerCase().includes(q)));
+  $("#dcount").textContent = `Showing ${res.length} of ${DIR.length} sites`;
+  $("#dir").innerHTML = res.map((e) => `<div class="dirrow">
+    <div class="nm">${esc(e.name)} <span class="badge b-blue" style="margin-left:6px">${esc((e.category || "").toUpperCase())}</span></div>
+    <div class="ds">${esc(e.type || "")}</div>
+    <div class="lv">${badgeFor(e)}</div>
+    <div class="acts">
+      ${e.careers_url ? `<a class="a-careers" href="${esc(e.careers_url)}" target="_blank" rel="noopener">Careers page ↗</a>` : ""}
+      ${e.website ? `<a class="a-site" href="${esc(e.website)}" target="_blank" rel="noopener">Main site ↗</a>` : ""}
+    </div>
+  </div>`).join("") || `<div class="empty">No sites match.</div>`;
 }
 
+/* ---------- boot ---------- */
 async function boot() {
-  bindChips();
+  document.querySelectorAll("#typeChips").forEach(() => {});
+  const tchips = [
+    ["", "All types"], ["government", "Government"], ["private", "Private"], ["bank", "Bank career pages"],
+  ];
+  $("#typeChips").innerHTML = tchips.map(([v, l]) => `<div class="chip${v === "" ? " active" : ""}" data-v="${v}">${l}</div>`).join("");
+  document.querySelectorAll("#typeChips .chip").forEach((c) => c.addEventListener("click", () => {
+    document.querySelectorAll("#typeChips .chip").forEach((x) => x.classList.remove("active"));
+    c.classList.add("active"); state.type = c.dataset.v; state.page = 1; render();
+  }));
+
   let deb;
-  $("#q").addEventListener("input", (e) => { clearTimeout(deb); deb = setTimeout(() => { state.q = e.target.value; state.page = 1; render(); }, 220); });
+  $("#q").addEventListener("input", (e) => { clearTimeout(deb); deb = setTimeout(() => { state.q = e.target.value; state.page = 1; render(); }, 200); });
   $("#selSource").addEventListener("change", (e) => { state.source = e.target.value; state.page = 1; render(); });
   $("#selDeadline").addEventListener("change", (e) => { state.deadline = e.target.value; state.page = 1; render(); });
   $("#selSort").addEventListener("change", (e) => { state.sort = e.target.value; state.page = 1; render(); });
 
+  let ddeb;
+  $("#dq").addEventListener("input", (e) => { clearTimeout(ddeb); ddeb = setTimeout(() => { dstate.q = e.target.value; renderDir(); }, 200); });
+  const dchips = [["", "All"], ["bank", "Banks (65)"], ["job-board", "Job boards"], ["government-portal", "Government portals"]];
+  $("#dirChips").innerHTML = dchips.map(([v, l]) => `<div class="chip${v === "" ? " active" : ""}" data-v="${v}">${l}</div>`).join("");
+  document.querySelectorAll("#dirChips .chip").forEach((c) => c.addEventListener("click", () => {
+    document.querySelectorAll("#dirChips .chip").forEach((x) => x.classList.remove("active"));
+    c.classList.add("active"); dstate.kind = c.dataset.v; renderDir();
+  }));
+
   try {
-    const resp = await fetch("../data/jobs.json");
-    const data = await resp.json();
+    const [r1, r2] = await Promise.all([fetch("../data/jobs.json"), fetch("../data/sources.json")]);
+    const data = await r1.json(); const src = await r2.json();
     ALL = data.jobs || [];
+    DIR = src.directory || (src.sites ? src.sites : []);
     $("#statTotal").textContent = data.total ?? ALL.length;
     $("#statSources").textContent = Object.keys(data.sources || {}).length;
     $("#statUpdated").textContent = (data.generated_at || "").slice(0, 10);
@@ -214,9 +302,9 @@ async function boot() {
       opt.value = s; opt.textContent = `${s} (${n})`;
       sel.appendChild(opt);
     });
-    render();
+    render(); renderDir();
   } catch (e) {
-    $("#jobs").innerHTML = `<div class="empty">Could not load jobs.json — serve this via a web server (e.g. <code>python -m http.server</code>).</div>`;
+    $("#jobs").innerHTML = `<div class="empty">Could not load data files — serve via a web server.</div>`;
   }
 }
 boot();

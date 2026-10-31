@@ -15,17 +15,25 @@ HEADERS = {
 
 
 def scrape(max_pages: int = 12, page_size: int = 20):
+    jobs = _scrape_list("govt-jobs/list", max_pages, page_size, "government")
+    # private postings (may be 0; endpoint exists officially)
+    jobs += _scrape_list("private-jobs/list", 5, page_size, "private")
+    return jobs
+
+
+def _scrape_list(path, max_pages: int, page_size: int, org_type: str):
     jobs = []
+    key = "govtJobs" if org_type == "government" else "privateJobs"
     try:
         for page in range(1, max_pages + 1):
             r = requests.get(
-                f"{API}/govt-jobs/list?page={page}&limit={page_size}",
+                f"{API}/{path}?page={page}&limit={page_size}",
                 headers=HEADERS, timeout=25,
             )
             if r.status_code != 200:
                 break
             data = r.json()
-            items = data.get("govtJobs") or []
+            items = data.get(key) or []
             if not items:
                 break
             for it in items:
@@ -39,9 +47,11 @@ def scrape(max_pages: int = 12, page_size: int = 20):
                 pub = str(it.get("published_date") or "")[:10]
                 org = (
                     ((it.get("job_utilities_govtorganization") or {}).get("name") if isinstance(it.get("job_utilities_govtorganization"), dict) else it.get("job_utilities_govtorganization"))
-                    or "Government Organization"
+                    or ("Government Organization" if org_type == "government" else "Private Company")
                 )
-                url = it.get("application_site") or f"https://alljobs.teletalk.com.bd/jobs/government/{it.get('organization_id')}/"
+                url = it.get("application_site") or (
+                    f"https://alljobs.teletalk.com.bd/jobs/{'government' if org_type == 'government' else 'private'}/"
+                )
                 if not title_bn:
                     title_bn = title
                 jobs.append(
@@ -50,7 +60,7 @@ def scrape(max_pages: int = 12, page_size: int = 20):
                         "title": title,
                         "title_bn": title_bn,
                         "organization": str(org)[:120],
-                        "org_type": "government",
+                        "org_type": org_type,
                         "source": "alljobs.teletalk",
                         "url": url,
                         "alljobs_job_id": it.get("job_id"),
@@ -58,7 +68,7 @@ def scrape(max_pages: int = 12, page_size: int = 20):
                         "deadline": deadline,
                         "published_date": pub,
                         "location": "Bangladesh",
-                        "description": f"Government job circular (vacancy: {it.get('vacancy') or '—'}).",
+                        "description": f"{'Government' if org_type == 'government' else 'Private'} job circular (vacancy: {it.get('vacancy') or '—'}).",
                         "scraped_at": now_iso(),
                         "trust": "official-api",
                     }
