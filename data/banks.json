@@ -1,0 +1,522 @@
+[
+  {
+    "name": "AB Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://abbl.com/",
+    "careers_url": "https://career.abbl.com/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Agrani Bank PLC",
+    "type": "State-owned Commercial Bank",
+    "category": "state-owned",
+    "website": "https://www.agranibank.org/",
+    "careers_url": "https://www.agranibank.org/index.php/home/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Al-Arafah Islami Bank PLC",
+    "type": "Private Islamic Commercial Bank",
+    "category": "private-islamic",
+    "website": "https://www.aibl.com.bd/",
+    "careers_url": "https://www.aibl.com.bd/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Bangladesh Commerce Bank Limited",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.bcblbd.com/",
+    "careers_url": "https://www.bcblbd.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Bangladesh Development Bank PLC",
+    "type": "State-owned Commercial Bank",
+    "category": "state-owned",
+    "website": "https://bdbl.com.bd/",
+    "careers_url": "https://bdbl.com.bd/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Bangladesh Krishi Bank",
+    "type": "State-owned Specialized Bank",
+    "category": "state-owned",
+    "website": "https://www.krishibank.org.bd/",
+    "careers_url": "https://www.krishibank.org.bd/mediaroom/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Bank Al-Falah Limited",
+    "type": "Foreign Commercial Bank",
+    "category": "foreign",
+    "website": "https://www.bankalfalah.com/bd/",
+    "careers_url": "https://www.bankalfalah.com/bd/career-opportunities/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Bank Asia PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.bankasia-bd.com/",
+    "careers_url": "https://www.bankasia-bd.com/about/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "BASIC Bank PLC",
+    "type": "State-owned Commercial Bank",
+    "category": "state-owned",
+    "website": "https://basicbankplc.com/",
+    "careers_url": "https://basicbankplc.com/en/careers",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Bengal Commercial Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.bgcb.com.bd/",
+    "careers_url": "https://www.bgcb.com.bd/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "BRAC Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://bracbank.com/",
+    "careers_url": "https://bracbank.taleo.net/careersection/external/jobsearch.ftl",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Citizens Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.citizensbankbd.com/",
+    "careers_url": "https://www.citizensbankbd.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "City Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.thecitybank.com/",
+    "careers_url": "https://www.citybankplc.com/life-at-city-evp/job-list",
+    "verification": "Partly confirmed"
+  },
+  {
+    "name": "Commercial Bank of Ceylon Limited",
+    "type": "Foreign Commercial Bank",
+    "category": "foreign",
+    "website": "https://www.combank.net/",
+    "careers_url": "https://www.combank.net.bd/about/career.html",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Community Bank Bangladesh PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.communitybankbd.com/",
+    "careers_url": "https://www.communitybankbd.com/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Dhaka Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.dhakabank.com.bd/",
+    "careers_url": "https://dhakabank.com.bd/human-resources/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Dutch-Bangla Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.dutchbanglabank.com/",
+    "careers_url": "https://app.dutchbanglabank.com/Online_Job/",
+    "verification": "Likely official"
+  },
+  {
+    "name": "Eastern Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://ebl.com.bd/",
+    "careers_url": "https://ebl.bdjobs.com/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Export Import Bank of Bangladesh PLC",
+    "type": "Private Islamic Commercial Bank*",
+    "category": "private-islamic",
+    "website": "https://www.eximbankbd.com/",
+    "careers_url": "https://career.eximbankbd.com/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "First Security Islami Bank PLC",
+    "type": "Private Islamic Commercial Bank*",
+    "category": "private-islamic",
+    "website": "https://www.fsiblbd.com/",
+    "careers_url": "https://www.fsiblbd.com/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Global Islami Bank PLC",
+    "type": "Private Islamic Commercial Bank*",
+    "category": "private-islamic",
+    "website": "https://www.globalislamibankbd.com/",
+    "careers_url": "https://www.globalislamibankbd.com/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Habib Bank Ltd.",
+    "type": "Foreign Commercial Bank",
+    "category": "foreign",
+    "website": "https://globalhbl.com/",
+    "careers_url": "https://www.hbl.com/careers",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "ICB Islamic Bank Ltd.",
+    "type": "Private Islamic Commercial Bank",
+    "category": "private-islamic",
+    "website": "https://www.icbislamic-bd.com/",
+    "careers_url": "https://www.icbislamic-bd.com/career/",
+    "verification": "Likely official"
+  },
+  {
+    "name": "IFIC Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://ificbank.com.bd/",
+    "careers_url": "https://ificbank.com.bd/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Islami Bank Bangladesh PLC",
+    "type": "Private Islamic Commercial Bank",
+    "category": "private-islamic",
+    "website": "https://islamibankbd.com/",
+    "careers_url": "https://www.islamibankbd.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Jamuna Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://jamunabankbd.com/",
+    "careers_url": "https://career.jamunabank.com.bd/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Janata Bank PLC",
+    "type": "State-owned Commercial Bank",
+    "category": "state-owned",
+    "website": "https://janatabank-bd.com/",
+    "careers_url": "https://janatabank-bd.com/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Meghna Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.meghnabank.com.bd/",
+    "careers_url": "https://www.meghnabank.com.bd/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Mercantile Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://mblbd.com/",
+    "careers_url": "https://mblbd.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Midland Bank Limited",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.midlandbankbd.net/",
+    "careers_url": "https://www.midlandbankbd.net/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Modhumoti Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.modhumotibankplc.com/",
+    "careers_url": "https://www.modhumotibankplc.com/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Mutual Trust Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.mutualtrustbank.com/",
+    "careers_url": "https://www.mutualtrustbank.com/about-us/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "National Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.nblbd.com/",
+    "careers_url": "https://www.nblbd.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "National Credit & Commerce Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.nccbank.com.bd/",
+    "careers_url": "https://www.nccbank.com.bd/Career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "NRB Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.nrbbankbd.com/",
+    "careers_url": "https://www.nrbbankbd.com/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "NRBC Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.nrbcommercialbank.com/",
+    "careers_url": "https://www.nrbcommercialbank.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "ONE Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.onebank.com.bd/",
+    "careers_url": "https://career.onebank.com.bd/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Padma Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.padmabankbd.com/",
+    "careers_url": "https://www.padmabankbd.com/career-job-openings",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Prime Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.primebank.com.bd/",
+    "careers_url": "https://www.primebank.com.bd/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Probashi Kallyan Bank",
+    "type": "State-owned Specialized Bank",
+    "category": "state-owned",
+    "website": "https://pkb.gov.bd/",
+    "careers_url": "https://pkb.gov.bd/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Pubali Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.pubalibangla.com/",
+    "careers_url": "https://www.pubalibangla.com/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Rajshahi Krishi Unnayan Bank",
+    "type": "State-owned Specialized Bank",
+    "category": "state-owned",
+    "website": "https://rakub.org.bd/",
+    "careers_url": "https://rakub.org.bd/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Rupali Bank PLC",
+    "type": "State-owned Commercial Bank",
+    "category": "state-owned",
+    "website": "https://www.rupalibank.com.bd/",
+    "careers_url": "https://www.rupalibank.com.bd/notice_jquery.php?type=20",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Sammilito Islami Bank PLC",
+    "type": "State-owned Islamic Commercial Bank",
+    "category": "state-owned-islamic",
+    "website": "https://sammilitobankbd.com/",
+    "careers_url": "https://sammilitobankbd.com/career.php",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "SBAC Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.sbacbank.com/",
+    "careers_url": "https://www.sbacbank.com/career",
+    "verification": "Likely official"
+  },
+  {
+    "name": "Shahjalal Islami Bank PLC",
+    "type": "Private Islamic Commercial Bank",
+    "category": "private-islamic",
+    "website": "https://sjiblbd.com/",
+    "careers_url": "https://sjiblbd.com/career.php",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Shimanto Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.shimantobank.com/",
+    "careers_url": "https://career.shimantobank.com/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Social Islami Bank PLC",
+    "type": "Private Islamic Commercial Bank*",
+    "category": "private-islamic",
+    "website": "https://www.siblbd.com/",
+    "careers_url": "https://www.siblbd.com/home/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Sonali Bank PLC",
+    "type": "State-owned Commercial Bank",
+    "category": "state-owned",
+    "website": "https://www.sonalibank.com.bd/",
+    "careers_url": "https://www.sonalibank.com.bd/sblrec/applicant/home.php",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Southeast Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.southeastbank.com.bd/",
+    "careers_url": "https://www.southeastbank.com.bd/?page=career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Standard Chartered Bank",
+    "type": "Foreign Commercial Bank",
+    "category": "foreign",
+    "website": "https://www.sc.com/bd/",
+    "careers_url": "https://www.sc.com/en/global-careers/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Standard Islami Bank PLC",
+    "type": "Private Islamic Commercial Bank",
+    "category": "private-islamic",
+    "website": "https://www.standardbankbd.com/",
+    "careers_url": "https://career.standardbankbd.com/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "The Hong Kong and Shanghai Banking Corporation Ltd. (HSBC)",
+    "type": "Foreign Commercial Bank",
+    "category": "foreign",
+    "website": "https://www.hsbc.com.bd/",
+    "careers_url": "https://portal.careers.hsbc.com/careers?domain=hsbc.com&location=Bangladesh",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "The Premier Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.thepremierbankplc.com/",
+    "careers_url": "https://thepremierbankplc.com/career/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Trust Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.trustbank.com.bd/",
+    "careers_url": "https://career.tblbd.com/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Union Bank PLC",
+    "type": "Private Islamic Commercial Bank*",
+    "category": "private-islamic",
+    "website": "https://www.unionbank.com.bd/",
+    "careers_url": "https://www.unionbank.com.bd/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "United Commercial Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.ucb.com.bd/",
+    "careers_url": "https://www.ucb.com.bd/career/opportunity-details",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Uttara Bank PLC",
+    "type": "Private Commercial Bank",
+    "category": "private",
+    "website": "https://www.uttarabank-bd.com/",
+    "careers_url": "https://www.uttarabank-bd.com/home/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Woori Bank",
+    "type": "Foreign Commercial Bank",
+    "category": "foreign",
+    "website": "https://bd.wooribank.com/",
+    "careers_url": "https://www.wooribank.com/",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Ansar VDP Unnayan Bank",
+    "type": "Non-scheduled Specialized Bank",
+    "category": "non-scheduled",
+    "website": "",
+    "careers_url": "",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Karmashangosthan Bank",
+    "type": "Non-scheduled Specialized Bank",
+    "category": "non-scheduled",
+    "website": "https://kb.gov.bd/",
+    "careers_url": "https://kb.teletalk.com.bd/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Grameen Bank",
+    "type": "Non-scheduled Specialized Bank",
+    "category": "non-scheduled",
+    "website": "https://grameenbank.org.bd/",
+    "careers_url": "https://www.grameenbank.org.bd/about/career",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Jubilee Bank",
+    "type": "Non-scheduled Specialized Bank",
+    "category": "non-scheduled",
+    "website": "",
+    "careers_url": "",
+    "verification": "Needs direct check"
+  },
+  {
+    "name": "Palli Sanchay Bank",
+    "type": "Non-scheduled Specialized Bank",
+    "category": "non-scheduled",
+    "website": "https://pallisanchaybank.gov.bd/",
+    "careers_url": "https://pallisanchaybank.gov.bd/",
+    "verification": "Confirmed"
+  },
+  {
+    "name": "Bangladesh Bank",
+    "type": "Central Bank / Regulator",
+    "category": "central-bank",
+    "website": "https://www.bb.org.bd/",
+    "careers_url": "https://erecruitment.bb.org.bd/",
+    "verification": "Confirmed"
+  }
+]

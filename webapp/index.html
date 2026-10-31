@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JobHarvestBD — All Bangladesh Job Circulars</title>
+<meta name="description" content="Search all scraped job circulars from BDJobs, AllJobs Teletalk, Bangladesh Bank e-Recruitment and 60+ bank career pages. Auto-updated every 6 hours." />
+<style>
+  :root {
+    --bg: #f4f6fa; --card: #fff; --ink: #17233a; --muted: #5c6b8a;
+    --brand: #0e6b5c; --brand2: #128a76; --accent: #d9534f;
+    --chip-bg: #e8f2f0; --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", system-ui, -apple-system, "Noto Sans Bengali", sans-serif; background: var(--bg); color: var(--ink); }
+
+  header.top { background: linear-gradient(135deg, var(--brand) 0%, var(--brand2) 100%); color: #fff; padding: 20px 16px 16px; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  header.top h1 { font-size: 1.45rem; letter-spacing: .3px; }
+  header.top h1 span { opacity: .85; font-weight: 500; }
+  .stats { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 8px; font-size: .85rem; opacity: .92; }
+  .stats b { font-size: 1.05rem; }
+
+  .controls { background: var(--card); border-radius: var(--radius); padding: 14px; margin: -22px auto 10px; box-shadow: 0 6px 18px rgba(20,40,60,.08); max-width: 1100px; position: relative; }
+  .searchrow { display: flex; gap: 10px; }
+  .searchrow input[type=text] { flex: 1; padding: 12px 14px; font-size: 1rem; border: 1.5px solid #d5deec; border-radius: 10px; outline: none; }
+  .searchrow input[type=text]:focus { border-color: var(--brand2); }
+  .row2 { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  select { padding: 9px 10px; border: 1.5px solid #d5deec; border-radius: 10px; background: #fff; font-size: .9rem; outline: none; cursor: pointer; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .chip { padding: 7px 14px; border-radius: 999px; border: 1.5px solid #d5deec; background: #fff; cursor: pointer; font-size: .85rem; user-select: none; }
+  .chip.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .count { color: var(--muted); font-size: .85rem; margin: 4px 2px 10px; max-width: 1100px; }
+
+  .jobs { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .job { background: var(--card); border-radius: var(--radius); padding: 14px 16px; box-shadow: 0 3px 10px rgba(20,40,60,.05); border: 1px solid #e7ecf3; }
+  .job h3 { font-size: 1.02rem; line-height: 1.35; margin-bottom: 4px; }
+  .job h3 a { color: var(--ink); text-decoration: none; }
+  .job h3 a:hover { color: var(--brand2); }
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: .8rem; color: var(--muted); }
+  .tagline { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+  .tag { background: var(--chip-bg); color: var(--brand); padding: 3px 10px; border-radius: 999px; font-size: .74rem; font-weight: 600; }
+  .tag.gov { background: #eef2ff; color: #3b4fd8; }
+  .tag.pri { background: #fff3e6; color: #c96a10; }
+  .tag.bank { background: #e8f2f0; color: var(--brand); }
+  .deadline { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; }
+  .deadline.soon { color: var(--accent); }
+  .desc { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+  .btns { margin-top: 8px; }
+  .btns a { display: inline-block; padding: 8px 16px; background: var(--brand); color: #fff; border-radius: 9px; text-decoration: none; font-size: .85rem; font-weight: 600; }
+  .btns a:hover { background: var(--brand2); }
+  .more { display: block; margin: 16px auto; padding: 10px 26px; background: #fff; border: 1.5px solid var(--brand); color: var(--brand); border-radius: 999px; font-size: .95rem; cursor: pointer; font-weight: 600; }
+  .more:hover { background: var(--brand); color: #fff; }
+  .empty { text-align: center; color: var(--muted); padding: 40px 0; }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 26px 12px; }
+  footer a { color: var(--brand); }
+  @media (max-width: 640px) { .job { padding: 12px; } header.top h1 { font-size: 1.15rem; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>🇧🇩 JobHarvestBD <span>— search every Bangladeshi job circular in one place</span></h1>
+    <div class="stats">
+      <div>Total jobs scraped: <b id="statTotal">…</b></div>
+      <div>Sources: <b id="statSources">…</b></div>
+      <div>Last updated: <b id="statUpdated">…</b></div>
+      <div>Auto-refresh: <b>every 6 hours</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="searchrow">
+    <input id="q" type="text" placeholder="Search job title, organization, or keyword (English / বাংলা)…" autocomplete="off" />
+  </div>
+  <div class="row2">
+    <select id="selSource"><option value="">All sources</option></select>
+    <select id="selDeadline">
+      <option value="">Any deadline</option>
+      <option value="7">Closing within 7 days</option>
+      <option value="30">Closing within 30 days</option>
+      <option value="none">No deadline info</option>
+    </select>
+    <select id="selSort">
+      <option value="new">Newest first</option>
+      <option value="deadline">Deadline soonest</option>
+      <option value="org">Organization A–Z</option>
+    </select>
+  </div>
+  <div class="chips" id="typeChips">
+    <div class="chip active" data-v="">All types</div>
+    <div class="chip" data-v="government">Government</div>
+    <div class="chip" data-v="private">Private</div>
+    <div class="chip" data-v="bank">Bank career pages</div>
+  </div>
+</div>
+
+<div class="count" id="count"></div>
+<div class="jobs" id="jobs"></div>
+<button class="more" id="more" onclick="loadMore()">Show more</button>
+
+<footer>
+  Data is scraped automatically from <a href="https://www.bdjobs.com" target="_blank" rel="noopener">BDJobs</a>,
+  <a href="https://alljobs.teletalk.com.bd" target="_blank" rel="noopener">AllJobs by Teletalk</a>,
+  <a href="https://erecruitment.bb.org.bd" target="_blank" rel="noopener">Bangladesh Bank e-Recruitment</a> and 60+ bank career pages.
+  Always verify on the official source before applying.
+</footer>
+
+<script>
+let ALL = [], state = { q: "", source: "", type: "", deadline: "", sort: "new", page: 1, PER: 30 };
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => (s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function daysLeft(iso) {
+  if (!iso) return null;
+  const d = new Date(iso + "T00:00:00");
+  if (isNaN(d)) return null;
+  return Math.ceil((d - Date.now()) / 86400000);
+}
+
+function filtered() {
+  const q = state.q.trim().toLowerCase();
+  let out = ALL.filter((j) => {
+    if (state.source && j.source !== state.source) return false;
+    const orgType = (j.org_type || "").toLowerCase();
+    if (state.type === "bank") { if (!j.source.startsWith("bank-site")) return false; }
+    else if (state.type && orgType !== state.type) return false;
+    if (state.deadline === "none" && j.deadline) return false;
+    if (state.deadline && state.deadline !== "none") {
+      const d = daysLeft(j.deadline);
+      if (d === null || d < 0 || d > +state.deadline) return false;
+    }
+    if (q) {
+      const hay = (j.title + " " + (j.title_bn || "") + " " + j.organization + " " + (j.description || "") + " " + (j.location || "")).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return j;
+  });
+  const s = state.sort;
+  if (s === "deadline") out.sort((a, b) => (a.deadline || "9999").localeCompare(b.deadline || "9999"));
+  else if (s === "org") out.sort((a, b) => a.organization.localeCompare(b.organization));
+  else out.sort((a, b) => (b.published_date || b.scraped_at || "").localeCompare(a.published_date || a.scraped_at || ""));
+  return out;
+}
+
+function sourceClass(j) {
+  if (j.source.startsWith("bank-site")) return "bank";
+  if ((j.org_type || "").includes("gov") ) return "gov";
+  return "pri";
+}
+
+function render() {
+  const res = filtered();
+  $("#count").textContent = `Showing ${Math.min(state.page * state.PER, res.length)} of ${res.length} matching jobs`;
+  const slice = res.slice(0, state.page * state.PER);
+  const box = $("#jobs");
+  if (!slice.length) { box.innerHTML = `<div class="empty">😕 No jobs match. Try clearing filters.</div>`; $("#more").style.display = "none"; return; }
+  box.innerHTML = slice.map((j) => {
+    const d = daysLeft(j.deadline);
+    const dl = d === null
+      ? `<span class="deadline" style="color:#8a97b3">⏳ no deadline listed</span>`
+      : d < 0
+        ? `<span class="deadline" style="color:#9aa5b8">⚠️ date passed: ${esc(j.deadline)}</span>`
+        : `<span class="deadline ${d <= 7 ? "soon" : ""}">📅 closes ${esc(j.deadline)} ${d <= 7 ? `(${d}d left!)` : ""}</span>`;
+    const orgType = j.source.startsWith("bank-site") ? "BANK SITE" : (j.org_type || "").toUpperCase();
+    return `<div class="job">
+      <h3><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></h3>
+      <div class="meta"><b>${esc(j.organization)}</b>${j.location ? " · " + esc(j.location) : ""}</div>
+      <div class="tagline">
+        <span class="tag ${sourceClass(j)}">${esc(j.source)}</span>
+        <span class="tag ${sourceClass(j)}">${esc(orgType)}</span>
+        ${j.vacancy && j.vacancy !== "—" ? `<span class="tag">vacancy: ${esc(j.vacancy)}</span>` : ""}
+      </div>
+      <div class="meta">${dl}${j.published_date ? ` · 🗓 posted ${esc(j.published_date)}` : ""}</div>
+      ${j.description ? `<div class="desc">${esc(j.description.slice(0, 220))}${j.description.length > 220 ? "…" : ""}</div>` : ""}
+      <div class="btns"><a href="${esc(j.url)}" target="_blank" rel="noopener">Open circular ↗</a></div>
+    </div>`;
+  }).join("");
+  $("#more").style.display = res.length > slice.length ? "block" : "none";
+}
+
+function loadMore() { state.page++; render(); }
+
+function bindChips() {
+  document.querySelectorAll("#typeChips .chip").forEach((c) =>
+    c.addEventListener("click", () => {
+      document.querySelectorAll("#typeChips .chip").forEach((x) => x.classList.remove("active"));
+      c.classList.add("active");
+      state.type = c.dataset.v; state.page = 1; render();
+    }));
+}
+
+async function boot() {
+  bindChips();
+  let deb;
+  $("#q").addEventListener("input", (e) => { clearTimeout(deb); deb = setTimeout(() => { state.q = e.target.value; state.page = 1; render(); }, 220); });
+  $("#selSource").addEventListener("change", (e) => { state.source = e.target.value; state.page = 1; render(); });
+  $("#selDeadline").addEventListener("change", (e) => { state.deadline = e.target.value; state.page = 1; render(); });
+  $("#selSort").addEventListener("change", (e) => { state.sort = e.target.value; state.page = 1; render(); });
+
+  try {
+    const resp = await fetch("../data/jobs.json");
+    const data = await resp.json();
+    ALL = data.jobs || [];
+    $("#statTotal").textContent = data.total ?? ALL.length;
+    $("#statSources").textContent = Object.keys(data.sources || {}).length;
+    $("#statUpdated").textContent = (data.generated_at || "").slice(0, 10);
+    const sel = $("#selSource");
+    Object.entries(data.sources || {}).forEach(([s, n]) => {
+      const opt = document.createElement("option");
+      opt.value = s; opt.textContent = `${s} (${n})`;
+      sel.appendChild(opt);
+    });
+    render();
+  } catch (e) {
+    $("#jobs").innerHTML = `<div class="empty">Could not load jobs.json — serve this via a web server (e.g. <code>python -m http.server</code>).</div>`;
+  }
+}
+boot();
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+probe*.py
+probe_*.json
+probe_*.txt
+bdjobs_jobs.html
+bdjobs_api_*.json
+.vscode/
