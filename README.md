@@ -52,11 +52,19 @@ python -m http.server 8000
 ## The webapp
 
 `webapp/index.html` gives you:
+
+**🔍 Job Search tab**
 - 🔎 Instant search (English **and বাংলা**)
 - 🧩 Source dropdown, job-type chips (Government / Private / Bank sites)
 - ⏳ Deadline filters (7 / 30 days / no-deadline)
 - ↕️ Sort by newest, deadline or organization
 - 📄 30-per-page pagination with "Show more"
+- 🔗 Every job card has "Open circular" + a one-click "Verify on site" Google link
+
+**🌐 All Sites tab** (68 sources)
+- Every site from your PDF (`banks.json`) plus BDJobs, AllJobs Teletalk and BB e-Recruitment
+- Filter by Banks / Job boards / Government portals, search by name (e.g. "Sonali")
+- Each row shows badges (how many circulars were harvested, whether the careers URL is confirmed) with direct "Careers page" and "Main site" buttons
 
 ## Honesty notes
 

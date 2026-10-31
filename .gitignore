@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
 probe*.py
+inspect_*.py
+live_check.png
 probe_*.json
 probe_*.txt
 bdjobs_jobs.html
